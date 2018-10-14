@@ -50,7 +50,7 @@ export default {
   methods: {
     fetchData() {
       let user = document.getElementById('username').value;
-      this.$http.get('https://api.github.com/users/' + user + '/repos?access_token=cd997d78bfd0f4c8c29385b0c137d45661b35f40')
+      this.$http.get('https://api.github.com/users/' + user + '/repos?access_token=41dcfe4e01aa577b5b6c282707acc0d2b5b1f961&per_page=50')
       .then(response => {
         let tempRepos = JSON.parse(JSON.stringify(response.body));
         for(let i = 0; i < tempRepos.length; i++) {
@@ -58,7 +58,7 @@ export default {
           let currentRepo = tempRepos[i].name;
           // this.repos.push(currentRepo);
           this.$http.get('https://api.github.com/repos/'+ user + '/'
-          + currentRepo + '/languages?access_token=cd997d78bfd0f4c8c29385b0c137d45661b35f40')
+          + currentRepo + '/languages?access_token=41dcfe4e01aa577b5b6c282707acc0d2b5b1f961')
           .then(response => {
             this.repos.push(currentRepo);
             this.repos.push(JSON.parse(JSON.stringify(response.body)));
